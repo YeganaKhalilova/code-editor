@@ -1,4 +1,4 @@
-package com.kafka.example.codeeditor.model;
+package com.kafka.example.codeeditor.domain.model;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
@@ -21,20 +19,20 @@ import jakarta.validation.constraints.NotBlank;
 public class User {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank
+  @Column(nullable = false)
   private String name;
-  @NotBlank
+
+  @Column(nullable = false)
   private String surname;
 
-  @Email
-  @NotBlank
-  private String email;
+  @Column(nullable = false, unique = true)
+  String email;
 
-  @NotBlank
-  private String password;
+  @Column(nullable = false)
+  String password;
 
   private boolean enabled = false;
 
@@ -50,8 +48,10 @@ public class User {
   @Column(name = "updated_at", nullable = false)
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   LocalDateTime updatedAt;
+
+
   public enum Role {
     ADMIN,
-    USER;
+    USER
   }
 }

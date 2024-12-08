@@ -1,6 +1,6 @@
 package com.kafka.example.codeeditor.config;
 
-import com.kafka.example.codeeditor.model.User;
+import com.kafka.example.codeeditor.domain.model.User;
 import com.kafka.example.codeeditor.repo.UserRepository;
 import java.util.Collection;
 import java.util.List;
