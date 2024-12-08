@@ -1,0 +1,20 @@
+server:
+  error:
+    include-binding-errors: always
+    include-message: always
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/User
+    username: user
+    password: s3curity
+    driver-class-name: org.postgresql.Driver
+
+  data:
+    redis:
+      host: myredis
+      port: 6379
+      password: ecommerce-redis-p@ss
+      timeout: 60000
+      client-type: lettuce
+
