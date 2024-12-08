@@ -1,20 +1,30 @@
-server:
-  error:
-    include-binding-errors: always
-    include-message: always
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/User
     username: user
     password: s3curity
     driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
 
   data:
     redis:
-      host: myredis
+      host: localhost
       port: 6379
       password: ecommerce-redis-p@ss
       timeout: 60000
       client-type: lettuce
 
+security:
+  key: "2d2310aa808dce6776594224c7fda3f7936647423ca89c67497b13f43e7e19abaa4aade639a7133a9e1bd2bffecfd6956f7d2c95340aaafb64d2d7d60938e008"
+
+refresh-token:
+  ttl: 2592000000
+
+access-token:
+  ttl: 600000
+
+server:
+  port:
+    8081

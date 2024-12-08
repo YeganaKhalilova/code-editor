@@ -1,4 +1,4 @@
-package com.kafka.example.codeeditor.config;
+package com.kafka.example.codeeditor.cache.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;

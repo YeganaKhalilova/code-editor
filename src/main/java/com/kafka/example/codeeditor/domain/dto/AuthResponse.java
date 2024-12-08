@@ -1,9 +1,11 @@
-package com.kafka.example.codeeditor.dto;
+package com.kafka.example.codeeditor.domain.dto;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 @Builder
 public class AuthResponse {
   private String accessToken;
