@@ -1,6 +1,7 @@
 package com.kafka.example.codeeditor.ui;
 
 import com.kafka.example.codeeditor.App;
+import com.kafka.example.codeeditor.sidebar.ProjectsPanel;
 import com.kafka.example.codeeditor.utils.RoundedButton;
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +15,6 @@ public class OpeningView extends JPanel implements ComponentListener {
   private final JPanel contentPanel;
 
   private final JLabel appNameLabel;
-  private final JButton projectsButton;
   private final JLabel titleLabel;
   private final JLabel mottoLabel;
   public JButton openProjectButton;
@@ -28,7 +28,6 @@ public class OpeningView extends JPanel implements ComponentListener {
     sidebarPanel.setLayout(new BoxLayout(sidebarPanel, BoxLayout.Y_AXIS));
     sidebarPanel.setPreferredSize(new Dimension(200, 0));
     sidebarPanel.setBackground(new Color(255, 254, 254));
-
     sidebarPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
 
     JPanel sidebarContainer = new JPanel();
@@ -42,19 +41,11 @@ public class OpeningView extends JPanel implements ComponentListener {
     appNameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
     appNameLabel.setForeground(new Color(50, 50, 50));
 
-    projectsButton = new RoundedButton("Projects", 15);
-    projectsButton.setBackground(new Color(75, 0, 108));
-    projectsButton.setForeground(Color.WHITE);
-    projectsButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
-    projectsButton.addActionListener(e -> {
-      app.projectView.openProject();
-      app.launch();
-    });
-
-
     sidebarContainer.add(appNameLabel);
     sidebarContainer.add(Box.createVerticalStrut(20));
-    sidebarContainer.add(projectsButton);
+
+    ProjectsPanel projectsPanel = new ProjectsPanel(app);
+    sidebarContainer.add(projectsPanel);
 
     sidebarPanel.add(sidebarContainer);
 
