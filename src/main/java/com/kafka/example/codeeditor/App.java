@@ -4,7 +4,7 @@ import com.formdev.flatlaf.fonts.inter.FlatInterFont;
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import com.kafka.example.codeeditor.ui.EditorView;
 import com.kafka.example.codeeditor.ui.ProjectView;
-import com.kafka.example.codeeditor.ui.WelcomeView;
+import com.kafka.example.codeeditor.ui.OpeningView;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.awt.*;
@@ -14,11 +14,12 @@ import javax.swing.*;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import lombok.extern.slf4j.Slf4j;
 
+
 @SpringBootApplication
 @Slf4j
 public class App extends JFrame {
 
-  public WelcomeView welcomeView;
+  public OpeningView openingView;
   public JSplitPane rootPanel;
   public ProjectView projectView;
   public EditorView editorView;
@@ -59,16 +60,12 @@ public class App extends JFrame {
 
   public void init() {
     editorFont = new Font(FlatJetBrainsMonoFont.FAMILY, Font.PLAIN, 18);
-
-    welcomeView = new WelcomeView(this);
-
+    openingView = new OpeningView(this);
     projectView = new ProjectView(this);
     projectView.setMinimumSize(new Dimension(200, 0));
     projectView.init();
     projectView.initActionListeners();
-
     editorView = new EditorView(this);
-
     rightSplitPanel = new JPanel();
 
     toolPanel = new JPanel();
@@ -160,7 +157,7 @@ public class App extends JFrame {
       projectView.root.removeAllChildren();
       projectView.projectFiles.clear();
 
-      setContentPane(welcomeView);
+      setContentPane(openingView);
       this.setSize(800, 500);
       this.setLocationRelativeTo(null);
     });
@@ -169,7 +166,7 @@ public class App extends JFrame {
       try {
         darkTheme = true;
         UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        welcomeView.openProjectButton.setBackground(new Color(20, 125, 241));
+        openingView.openProjectButton.setBackground(new Color(255, 151, 238));
 
         SwingUtilities.updateComponentTreeUI(this);
         editorView.setFont(editorFont);
@@ -183,7 +180,7 @@ public class App extends JFrame {
       try {
         darkTheme = false;
         UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        welcomeView.openProjectButton.setBackground(new Color(12, 182, 41));
+        openingView.openProjectButton.setBackground(new Color(12, 182, 41));
         SwingUtilities.updateComponentTreeUI(this);
         editorView.setFont(editorFont);
         projectView.refreshTree();
@@ -272,7 +269,7 @@ public class App extends JFrame {
     toolPanel.add(saveFileButton);
 
     this.add(rootPanel, BorderLayout.CENTER);
-    this.add(welcomeView);
+    this.add(openingView);
     setJMenuBar(menuBar);
 
     revalidate();

@@ -38,7 +38,4 @@ public class CustomNode extends DefaultMutableTreeNode{
         this.nodeName = newName;
         this.setUserObject(newName);
     }
-
-
-
 }
