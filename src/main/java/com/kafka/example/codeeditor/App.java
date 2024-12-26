@@ -184,10 +184,10 @@ public class App extends JFrame {
       darkTheme = isDark;
       if (isDark) {
         UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        openingView.openProjectButton.setBackground(new Color(255, 151, 238)); // Set your desired button color for dark theme
+        openingView.openProjectButton.setBackground(new Color(255, 151, 238));
       } else {
         UIManager.setLookAndFeel(new FlatMacLightLaf());
-        openingView.openProjectButton.setBackground(new Color(12, 182, 41)); // Set your desired button color for light theme
+        openingView.openProjectButton.setBackground(new Color(12, 182, 41));
       }
 
       SwingUtilities.updateComponentTreeUI(this);

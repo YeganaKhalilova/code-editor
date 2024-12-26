@@ -1,6 +1,7 @@
 package com.kafka.example.codeeditor.ui;
 
 import com.kafka.example.codeeditor.App;
+import com.kafka.example.codeeditor.sidebar.CustomizePanel;
 import com.kafka.example.codeeditor.sidebar.ProjectsPanel;
 import com.kafka.example.codeeditor.utils.RoundedButton;
 import javax.swing.*;
@@ -46,6 +47,9 @@ public class OpeningView extends JPanel implements ComponentListener {
 
     ProjectsPanel projectsPanel = new ProjectsPanel(app);
     sidebarContainer.add(projectsPanel);
+
+    CustomizePanel customizePanel = new CustomizePanel(app);
+    sidebarContainer.add(customizePanel);
 
     sidebarPanel.add(sidebarContainer);
 
