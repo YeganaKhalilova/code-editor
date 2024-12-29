@@ -2,6 +2,7 @@ package com.kafka.example.codeeditor;
 
 import com.formdev.flatlaf.fonts.inter.FlatInterFont;
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.kafka.example.codeeditor.ui.EditorView;
 import com.kafka.example.codeeditor.ui.ProjectView;
 import com.kafka.example.codeeditor.ui.OpeningView;
@@ -80,9 +81,8 @@ public class App extends JFrame {
     saveFileButton = new JButton("Save");
     saveFileButton.setEnabled(false);
     saveFileButton.setFont(new Font(FlatJetBrainsMonoFont.FAMILY, Font.PLAIN, 14));
-    saveFileButton.setBackground(new Color(67, 175, 21));
+    saveFileButton.setBackground(new Color(245, 228, 248));
     saveFileButton.addActionListener(e -> projectView.saveFile());
-
 
     currentFileParentPath = projectView.projectPath;
 
@@ -91,7 +91,6 @@ public class App extends JFrame {
     openTerminalButton.setBackground(new Color(30, 126, 248));
     openTerminalButton.addActionListener(e -> {
       try {
-
         if (os.contains("win")) {
           pb = new ProcessBuilder("cmd", "/c", "start", "powershell.exe");
         } else if (os.contains("mac")) {
@@ -100,7 +99,6 @@ public class App extends JFrame {
           pb = new ProcessBuilder("x-terminal-emulator");
         } else
           JOptionPane.showMessageDialog(null, "Unsupported Operating System", "Error", JOptionPane.ERROR_MESSAGE);
-
 
         if (!projectView.getSelectedCustomNode().getParent().isLeaf()) {
           pb.directory(new File(projectView.projectPath));
@@ -162,32 +160,8 @@ public class App extends JFrame {
       this.setLocationRelativeTo(null);
     });
 
-    darkThemeItem.addActionListener(e -> {
-      try {
-        darkTheme = true;
-        UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        openingView.openProjectButton.setBackground(new Color(255, 151, 238));
-
-        SwingUtilities.updateComponentTreeUI(this);
-        editorView.setFont(editorFont);
-        projectView.refreshTree();
-      } catch (UnsupportedLookAndFeelException ex) {
-        throw new RuntimeException(ex);
-      }
-    });
-
-    lightThemeItem.addActionListener(e -> {
-      try {
-        darkTheme = false;
-        UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        openingView.openProjectButton.setBackground(new Color(12, 182, 41));
-        SwingUtilities.updateComponentTreeUI(this);
-        editorView.setFont(editorFont);
-        projectView.refreshTree();
-      } catch (UnsupportedLookAndFeelException ex) {
-        throw new RuntimeException(ex);
-      }
-    });
+    darkThemeItem.addActionListener(e -> setDarkTheme(true));
+    lightThemeItem.addActionListener(e -> setDarkTheme(false));
 
     monokaiItem.addActionListener(e -> editorView.setColorScheme("Monokai"));
     eclipseItem.addActionListener(e -> editorView.setColorScheme("Eclipse"));
@@ -199,37 +173,64 @@ public class App extends JFrame {
     pythonItem.addActionListener(e -> editorView.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PYTHON));
     cItem.addActionListener(e -> editorView.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C));
     jsItem.addActionListener(e -> editorView.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVASCRIPT));
-    autoSaveItem.addActionListener(e -> {
-      if (autoSave) {
-        autoSave = false;
-        autoSaveItem.setText("Auto save : Off");
-        saveFileButton.setVisible(true);
-        autoSaveTimer.stop();
-      } else {
-        autoSave = true;
-        autoSaveItem.setText("Auto save : On");
-        saveFileButton.setVisible(false);
-        autoSaveTimer.start();
-      }
-    });
-    projectViewItem.addActionListener(e -> {
-      if (projectViewEnabled) {
-        projectViewEnabled = false;
-        projectView.setVisible(false);
-        rootPanel.setDividerLocation(0);
-        projectViewItem.setText("Project view : Disabled");
-      } else {
-        projectViewEnabled = true;
-        projectView.setVisible(true);
 
-        rootPanel.setDividerLocation(200);
-        projectViewItem.setText("Project view : Enabled");
-
-        revalidate();
-        repaint();
-      }
-    });
+    autoSaveItem.addActionListener(e -> toggleAutoSave());
+    projectViewItem.addActionListener(e -> toggleProjectView());
     exitItem.addActionListener(e -> System.exit(0));
+  }
+
+  public void setDarkTheme(boolean isDark) {
+    try {
+      darkTheme = isDark;
+      if (isDark) {
+        UIManager.setLookAndFeel(new FlatMacDarkLaf());
+        openingView.openProjectButton.setBackground(new Color(255, 151, 238));
+      } else {
+        UIManager.setLookAndFeel(new FlatMacLightLaf());
+        openingView.openProjectButton.setBackground(new Color(12, 182, 41));
+      }
+
+      SwingUtilities.updateComponentTreeUI(this);
+      editorView.setFont(editorFont);
+      projectView.refreshTree();
+    } catch (UnsupportedLookAndFeelException ex) {
+      throw new RuntimeException(ex);
+    }
+  }
+
+  public void setFontSize(int size) {
+    editorFont = new Font(FlatJetBrainsMonoFont.FAMILY, Font.PLAIN, size);
+    editorView.setFont(editorFont);
+  }
+
+  public void toggleAutoSave() {
+    if (autoSave) {
+      autoSave = false;
+      autoSaveItem.setText("Auto save : Off");
+      saveFileButton.setVisible(true);
+      autoSaveTimer.stop();
+    } else {
+      autoSave = true;
+      autoSaveItem.setText("Auto save : On");
+      saveFileButton.setVisible(false);
+      autoSaveTimer.start();
+    }
+  }
+
+  public void toggleProjectView() {
+    if (projectViewEnabled) {
+      projectViewEnabled = false;
+      projectView.setVisible(false);
+      rootPanel.setDividerLocation(0);
+      projectViewItem.setText("Project view : Disabled");
+    } else {
+      projectViewEnabled = true;
+      projectView.setVisible(true);
+      rootPanel.setDividerLocation(200);
+      projectViewItem.setText("Project view : Enabled");
+      revalidate();
+      repaint();
+    }
   }
 
   public void addComponent() {
