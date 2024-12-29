@@ -1,10 +1,12 @@
-package com.kafka.example.codeeditor.ui;
+package com.example.codeeditor.ui;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
 public class CustomNode extends DefaultMutableTreeNode{
 
-    private String nodeName, content, path;
+    private String nodeName;
+    private String content;
+    private String path;
     public boolean isDirectory;
 
     public CustomNode(String name, String content, String path) {

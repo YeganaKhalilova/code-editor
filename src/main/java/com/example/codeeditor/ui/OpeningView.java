@@ -1,9 +1,9 @@
-package com.kafka.example.codeeditor.ui;
+package com.example.codeeditor.ui;
 
-import com.kafka.example.codeeditor.App;
-import com.kafka.example.codeeditor.sidebar.CustomizePanel;
-import com.kafka.example.codeeditor.sidebar.ProjectsPanel;
-import com.kafka.example.codeeditor.utils.RoundedButton;
+import com.example.codeeditor.App;
+import com.example.codeeditor.sidebar.CustomizePanel;
+import com.example.codeeditor.sidebar.ProjectsPanel;
+import com.example.codeeditor.utils.RoundedButton;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;

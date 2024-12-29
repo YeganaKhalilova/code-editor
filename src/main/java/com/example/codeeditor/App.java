@@ -1,11 +1,12 @@
-package com.kafka.example.codeeditor;
+package com.example.codeeditor;
 
 import com.formdev.flatlaf.fonts.inter.FlatInterFont;
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import com.kafka.example.codeeditor.ui.EditorView;
-import com.kafka.example.codeeditor.ui.ProjectView;
-import com.kafka.example.codeeditor.ui.OpeningView;
+import com.example.codeeditor.ui.CustomizeView;
+import com.example.codeeditor.ui.EditorView;
+import com.example.codeeditor.ui.ProjectView;
+import com.example.codeeditor.ui.OpeningView;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.awt.*;
@@ -23,6 +24,7 @@ public class App extends JFrame {
   public OpeningView openingView;
   public JSplitPane rootPanel;
   public ProjectView projectView;
+  private CustomizeView customizationView;
   public EditorView editorView;
 
   public JPanel rightSplitPanel;
@@ -59,6 +61,16 @@ public class App extends JFrame {
     setLocationRelativeTo(null);
   }
 
+  public void showCustomizationView() {
+    if (customizationView == null) {
+      customizationView = new CustomizeView(this);
+      customizationView.init();
+    }
+
+    setContentPane(customizationView);
+    revalidate();
+    repaint();
+  }
   public void init() {
     editorFont = new Font(FlatJetBrainsMonoFont.FAMILY, Font.PLAIN, 18);
     openingView = new OpeningView(this);
@@ -300,6 +312,5 @@ public class App extends JFrame {
       app.addComponent();
     });
   }
-
 
 }

@@ -1,7 +1,7 @@
-package com.kafka.example.codeeditor.ui;
+package com.example.codeeditor.ui;
 
 import com.formdev.flatlaf.fonts.inter.FlatInterFont;
-import com.kafka.example.codeeditor.App;
+import com.example.codeeditor.App;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

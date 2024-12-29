@@ -1,4 +1,4 @@
-package com.kafka.example.codeeditor.utils;
+package com.example.codeeditor.utils;
 
 import javax.swing.*;
 import java.awt.*;

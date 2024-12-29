@@ -1,4 +1,4 @@
-package com.kafka.example.codeeditor;
+package com.example.codeeditor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
