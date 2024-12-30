@@ -13,8 +13,7 @@ public class OpeningView extends JPanel implements ComponentListener {
 
   private final App app;
   private final JPanel sidebarPanel;
-  private final JPanel contentPanel;
-
+  public final JPanel contentPanel;
   private final JLabel appNameLabel;
   private final JLabel titleLabel;
   private final JLabel mottoLabel;
@@ -54,8 +53,12 @@ public class OpeningView extends JPanel implements ComponentListener {
     sidebarPanel.add(sidebarContainer);
 
     contentPanel = new JPanel();
-    contentPanel.setLayout(null);
+    contentPanel.setLayout(new BorderLayout());
     contentPanel.setOpaque(false);
+
+    JLabel defaultLabel = new JLabel("Default Content: Open Project");
+    defaultLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    contentPanel.add(defaultLabel, BorderLayout.CENTER);
 
     titleLabel = new JLabel("");
     titleLabel.setFont(new Font("SansSerif", Font.BOLD, 52));

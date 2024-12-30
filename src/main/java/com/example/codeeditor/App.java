@@ -61,20 +61,18 @@ public class App extends JFrame {
     setLocationRelativeTo(null);
   }
 
-  public void showCustomizationView() {
-    if (customizationView == null) {
-      customizationView = new CustomizeView(this);
-      customizationView.init();
-    }
-
-    setContentPane(customizationView);
-    revalidate();
-    repaint();
+  public void setContentPanel(JPanel newPanel) {
+    openingView.contentPanel.removeAll();
+    openingView.contentPanel.add(newPanel);
+    openingView.contentPanel.revalidate();
+    openingView.contentPanel.repaint();
   }
+
   public void init() {
     editorFont = new Font(FlatJetBrainsMonoFont.FAMILY, Font.PLAIN, 18);
     openingView = new OpeningView(this);
     projectView = new ProjectView(this);
+    customizationView = new CustomizeView(this);
     projectView.setMinimumSize(new Dimension(200, 0));
     projectView.init();
     projectView.initActionListeners();
@@ -210,9 +208,9 @@ public class App extends JFrame {
     }
   }
 
-  public void setFontSize(int size) {
-    editorFont = new Font(FlatJetBrainsMonoFont.FAMILY, Font.PLAIN, size);
-    editorView.setFont(editorFont);
+  public void setFontSize(int fontSize) {
+    UIManager.put("defaultFont", new Font("JetBrains Mono", Font.PLAIN, fontSize));
+    SwingUtilities.updateComponentTreeUI(this);
   }
 
   public void toggleAutoSave() {
