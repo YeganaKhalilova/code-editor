@@ -1,7 +1,7 @@
-package com.kafka.example.codeeditor.sidebar;
+package com.example.codeeditor.sidebar;
 
-import com.kafka.example.codeeditor.App;
-import com.kafka.example.codeeditor.utils.RoundedButton;
+import com.example.codeeditor.App;
+import com.example.codeeditor.utils.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;

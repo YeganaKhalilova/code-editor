@@ -1,11 +1,12 @@
-package com.kafka.example.codeeditor;
+package com.example.codeeditor;
 
 import com.formdev.flatlaf.fonts.inter.FlatInterFont;
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import com.kafka.example.codeeditor.ui.EditorView;
-import com.kafka.example.codeeditor.ui.ProjectView;
-import com.kafka.example.codeeditor.ui.OpeningView;
+import com.example.codeeditor.ui.CustomizeView;
+import com.example.codeeditor.ui.EditorView;
+import com.example.codeeditor.ui.ProjectView;
+import com.example.codeeditor.ui.OpeningView;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.awt.*;
@@ -23,6 +24,7 @@ public class App extends JFrame {
   public OpeningView openingView;
   public JSplitPane rootPanel;
   public ProjectView projectView;
+  private CustomizeView customizationView;
   public EditorView editorView;
 
   public JPanel rightSplitPanel;
@@ -59,10 +61,18 @@ public class App extends JFrame {
     setLocationRelativeTo(null);
   }
 
+  public void setContentPanel(JPanel newPanel) {
+    openingView.contentPanel.removeAll();
+    openingView.contentPanel.add(newPanel);
+    openingView.contentPanel.revalidate();
+    openingView.contentPanel.repaint();
+  }
+
   public void init() {
     editorFont = new Font(FlatJetBrainsMonoFont.FAMILY, Font.PLAIN, 18);
     openingView = new OpeningView(this);
     projectView = new ProjectView(this);
+    customizationView = new CustomizeView(this);
     projectView.setMinimumSize(new Dimension(200, 0));
     projectView.init();
     projectView.initActionListeners();
@@ -198,9 +208,9 @@ public class App extends JFrame {
     }
   }
 
-  public void setFontSize(int size) {
-    editorFont = new Font(FlatJetBrainsMonoFont.FAMILY, Font.PLAIN, size);
-    editorView.setFont(editorFont);
+  public void setFontSize(int fontSize) {
+    UIManager.put("defaultFont", new Font("JetBrains Mono", Font.PLAIN, fontSize));
+    SwingUtilities.updateComponentTreeUI(this);
   }
 
   public void toggleAutoSave() {
@@ -300,6 +310,5 @@ public class App extends JFrame {
       app.addComponent();
     });
   }
-
 
 }

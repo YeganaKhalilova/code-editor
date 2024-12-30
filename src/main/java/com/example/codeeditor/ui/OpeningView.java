@@ -1,9 +1,9 @@
-package com.kafka.example.codeeditor.ui;
+package com.example.codeeditor.ui;
 
-import com.kafka.example.codeeditor.App;
-import com.kafka.example.codeeditor.sidebar.CustomizePanel;
-import com.kafka.example.codeeditor.sidebar.ProjectsPanel;
-import com.kafka.example.codeeditor.utils.RoundedButton;
+import com.example.codeeditor.App;
+import com.example.codeeditor.sidebar.CustomizePanel;
+import com.example.codeeditor.sidebar.ProjectsPanel;
+import com.example.codeeditor.utils.RoundedButton;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
@@ -13,8 +13,7 @@ public class OpeningView extends JPanel implements ComponentListener {
 
   private final App app;
   private final JPanel sidebarPanel;
-  private final JPanel contentPanel;
-
+  public final JPanel contentPanel;
   private final JLabel appNameLabel;
   private final JLabel titleLabel;
   private final JLabel mottoLabel;
@@ -54,8 +53,12 @@ public class OpeningView extends JPanel implements ComponentListener {
     sidebarPanel.add(sidebarContainer);
 
     contentPanel = new JPanel();
-    contentPanel.setLayout(null);
+    contentPanel.setLayout(new BorderLayout());
     contentPanel.setOpaque(false);
+
+    JLabel defaultLabel = new JLabel("Default Content: Open Project");
+    defaultLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    contentPanel.add(defaultLabel, BorderLayout.CENTER);
 
     titleLabel = new JLabel("");
     titleLabel.setFont(new Font("SansSerif", Font.BOLD, 52));

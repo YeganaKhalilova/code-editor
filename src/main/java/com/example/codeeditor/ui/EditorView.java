@@ -1,7 +1,7 @@
-package com.kafka.example.codeeditor.ui;
+package com.example.codeeditor.ui;
 
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
-import com.kafka.example.codeeditor.App;
+import com.example.codeeditor.App;
 import org.fife.ui.rsyntaxtextarea.*;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
