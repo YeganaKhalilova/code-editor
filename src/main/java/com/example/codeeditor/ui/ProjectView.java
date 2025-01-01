@@ -27,7 +27,7 @@ public class ProjectView extends JPanel {
   private JTree projectTree;
   private JScrollPane projectScrollPane;
   public String directoryPath;
-
+  private CustomizeView customizeView;
   public ArrayList<CustomNode> projectFiles = new ArrayList<>();
   public String projectPath = null;
 

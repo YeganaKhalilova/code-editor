@@ -5,9 +5,10 @@ import com.example.codeeditor.sidebar.CustomizePanel;
 import java.awt.*;
 import javax.swing.*;
 
+
 public class CustomizeView extends JPanel {
 
-  private boolean isDarkTheme = false;
+  public boolean isDarkTheme = false;
 
   public CustomizeView(App app, CustomizePanel customizePanel) {
     setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -26,25 +27,7 @@ public class CustomizeView extends JPanel {
     add(Box.createVerticalStrut(20));
     add(themeLabel);
 
-    String[] themes = {"Light Theme", "Dark Theme"};
-    JComboBox<String> themeDropdown = new JComboBox<>(themes);
-    themeDropdown.setMaximumSize(new Dimension(200, 30));
-    themeDropdown.setBackground(Color.WHITE);
-    themeDropdown.setAlignmentX(Component.LEFT_ALIGNMENT);
-    themeDropdown.setForeground(new Color(30, 30, 30));
-
-    themeDropdown.addActionListener(e -> {
-      String selectedTheme = (String) themeDropdown.getSelectedItem();
-      isDarkTheme = "Dark Theme".equals(selectedTheme);
-      app.setDarkTheme(isDarkTheme);
-
-      customizePanel.updateButtonColor(isDarkTheme);
-
-      repaint();
-    });
-
-    add(Box.createVerticalStrut(10));
-    add(themeDropdown);
+    changeTheme(app, customizePanel);
 
     JLabel fontLabel = new JLabel("Select Font Size:");
     fontLabel.setFont(new Font("SansSerif", Font.PLAIN, 16));
@@ -66,6 +49,28 @@ public class CustomizeView extends JPanel {
     add(slider);
   }
 
+  public void changeTheme(App app, CustomizePanel customizePanel) {
+
+    String[] themes = {"Light Theme", "Dark Theme"};
+    JComboBox<String> themeDropdown = new JComboBox<>(themes);
+    themeDropdown.setMaximumSize(new Dimension(200, 30));
+    themeDropdown.setBackground(Color.WHITE);
+    themeDropdown.setAlignmentX(Component.LEFT_ALIGNMENT);
+    themeDropdown.setForeground(new Color(30, 30, 30));
+
+    themeDropdown.addActionListener(e -> {
+      String selectedTheme = (String) themeDropdown.getSelectedItem();
+      isDarkTheme = "Dark Theme".equals(selectedTheme);
+      app.setDarkTheme(isDarkTheme);
+
+      customizePanel.updateButtonColor(isDarkTheme);
+
+      repaint();
+    });
+
+    add(Box.createVerticalStrut(10));
+    add(themeDropdown);
+  }
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);

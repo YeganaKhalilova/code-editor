@@ -1,5 +1,6 @@
 package com.example.codeeditor;
 
+import com.example.codeeditor.sidebar.CustomizePanel;
 import com.example.codeeditor.sidebar.ProjectsPanel;
 import com.formdev.flatlaf.fonts.inter.FlatInterFont;
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootApplication
 @Slf4j
 public class App extends JFrame {
+
 
   public OpeningView openingView;
   public JSplitPane rootPanel;
@@ -52,7 +54,7 @@ public class App extends JFrame {
 
   public boolean darkTheme = true;
   public Font editorFont;
-
+  public CustomizePanel customizePanel;
   public App() {
     setSize(800, 500);
     setTitle("CodeLite");
