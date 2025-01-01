@@ -208,9 +208,24 @@ public class App extends JFrame {
   }
 
   public void setFontSize(int fontSize) {
-    UIManager.put("defaultFont", new Font("JetBrains Mono", Font.PLAIN, fontSize));
-    SwingUtilities.updateComponentTreeUI(this);
+    Font newFont = new Font("JetBrains Mono", Font.PLAIN, fontSize);
+    UIManager.put("defaultFont", newFont);
+
+    SwingUtilities.invokeLater(() -> {
+      updateComponentFont(this, newFont);
+      SwingUtilities.updateComponentTreeUI(this);
+    });
   }
+
+  private void updateComponentFont(Component component, Font font) {
+    component.setFont(font);
+    if (component instanceof Container) {
+      for (Component child : ((Container) component).getComponents()) {
+        updateComponentFont(child, font);
+  }
+    }
+  }
+
 
   public void toggleAutoSave() {
     if (autoSave) {

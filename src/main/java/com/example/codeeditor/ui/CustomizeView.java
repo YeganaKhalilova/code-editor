@@ -53,11 +53,15 @@ public class CustomizeView extends JPanel {
     add(fontLabel);
 
     JSlider slider = new JSlider(12, 36, 18);
+    slider.setMaximumSize(new Dimension(200, slider.getPreferredSize().height));
     slider.setAlignmentX(Component.LEFT_ALIGNMENT);
     slider.addChangeListener(e -> {
-      int fontSize = slider.getValue();
-      app.setFontSize(fontSize);
+      if (!slider.getValueIsAdjusting()) {
+        int fontSize = slider.getValue();
+        app.setFontSize(fontSize);
+      }
     });
+
     add(Box.createVerticalStrut(10));
     add(slider);
   }
