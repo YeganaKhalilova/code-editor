@@ -8,11 +8,10 @@ import java.awt.*;
 
 public class ProjectsPanel extends JPanel {
 
-    private final App app;
+  private RoundedButton projectsButton;
 
     public ProjectsPanel(App app) {
-        this.app = app;
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+      setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(false);
 
         add(Box.createVerticalStrut(20));
@@ -28,5 +27,13 @@ public class ProjectsPanel extends JPanel {
         });
 
         add(projectsButton);
+    }
+
+    public void updateButtonColor(boolean isDarkTheme) {
+        if (isDarkTheme) {
+            projectsButton.setBackground(Color.BLACK);
+        } else {
+            projectsButton.setBackground(new Color(75, 0, 108));
+        }
     }
 }
