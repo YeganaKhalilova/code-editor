@@ -11,20 +11,16 @@ import java.awt.event.ComponentListener;
 
 public class OpeningView extends JPanel implements ComponentListener {
 
-  private final App app;
-  private final JPanel sidebarPanel;
   public final JPanel contentPanel;
-  private final JLabel appNameLabel;
   private final JLabel titleLabel;
   private final JLabel mottoLabel;
   public JButton openProjectButton;
 
   public OpeningView(App app) {
-    this.app = app;
     this.setLayout(new BorderLayout());
     this.setOpaque(false);
 
-    sidebarPanel = new JPanel();
+    JPanel sidebarPanel = new JPanel();
     sidebarPanel.setLayout(new BoxLayout(sidebarPanel, BoxLayout.Y_AXIS));
     sidebarPanel.setPreferredSize(new Dimension(200, 0));
     sidebarPanel.setBackground(new Color(255, 254, 254));
@@ -36,7 +32,7 @@ public class OpeningView extends JPanel implements ComponentListener {
 
     sidebarContainer.add(Box.createVerticalStrut(20));
 
-    appNameLabel = new JLabel("Codie");
+    JLabel appNameLabel = new JLabel("Codie");
     appNameLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
     appNameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
     appNameLabel.setForeground(new Color(50, 50, 50));
@@ -108,7 +104,6 @@ public class OpeningView extends JPanel implements ComponentListener {
       openProjectButton.setBounds(contentWidth / 2 - 100, mottoLabel.getY() + 50, 200, 40);
     }
   }
-
   @Override
   public void componentMoved(ComponentEvent e) {
 
@@ -123,4 +118,5 @@ public class OpeningView extends JPanel implements ComponentListener {
   public void componentHidden(ComponentEvent e) {
 
   }
+
 }

@@ -1,9 +1,9 @@
 package com.example.codeeditor;
 
+import com.example.codeeditor.sidebar.ProjectsPanel;
 import com.formdev.flatlaf.fonts.inter.FlatInterFont;
 import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import com.example.codeeditor.ui.CustomizeView;
 import com.example.codeeditor.ui.EditorView;
 import com.example.codeeditor.ui.ProjectView;
 import com.example.codeeditor.ui.OpeningView;
@@ -24,8 +24,8 @@ public class App extends JFrame {
   public OpeningView openingView;
   public JSplitPane rootPanel;
   public ProjectView projectView;
-  private CustomizeView customizationView;
   public EditorView editorView;
+  public ProjectsPanel projectsPanel;
 
   public JPanel rightSplitPanel;
   public JPanel toolPanel;
@@ -72,7 +72,6 @@ public class App extends JFrame {
     editorFont = new Font(FlatJetBrainsMonoFont.FAMILY, Font.PLAIN, 18);
     openingView = new OpeningView(this);
     projectView = new ProjectView(this);
-    customizationView = new CustomizeView(this);
     projectView.setMinimumSize(new Dimension(200, 0));
     projectView.init();
     projectView.initActionListeners();
